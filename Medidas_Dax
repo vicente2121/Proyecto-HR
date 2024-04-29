@@ -1,0 +1,26 @@
+Total Color JSS = 
+
+Var Maximos=CALCULATE(MAXX(DimJobSatisfactionStatus,[Total attrition]),ALL(DimJobSatisfactionStatus[JobSatisfactionStatus])) 
+
+Var Minimos=CALCULATE(MINX(DimJobSatisfactionStatus,[Total attrition]),ALL(DimJobSatisfactionStatus[JobSatisfactionStatus])) 
+
+
+Var Calculo=[Total attrition]
+
+Var Condiciones=SWITCH(TRUE(),
+                            Calculo=Maximos,"#818081",
+                            Calculo=Minimos, "#F32768",
+                           "#656785")
+
+RETURN
+Condiciones
+
+
+
+Total Color WYG = 
+Var Promedios=CALCULATE(AVERAGEX(DimWorkingYearGroup,[Total attrition]),ALL(DimWorkingYearGroup[WorkingYearGroup]))
+
+Var Condiciones=IF([Total attrition]>Promedios,"#818081","#656785")
+
+RETURN
+Condiciones
